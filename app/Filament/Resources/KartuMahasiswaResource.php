@@ -8,6 +8,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\KartuMahasiswa;
 use Filament\Resources\Resource;
+use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -37,10 +38,12 @@ class KartuMahasiswaResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('npm')->label('NIM')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->unique('kartu_mahasiswas', 'npm'),
                 Forms\Components\TextInput::make('nomer_kartu')->label('Nomer Kartu')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->unique('kartu_mahasiswas', 'nomer_kartu'),
                 Forms\Components\Toggle::make('status_kartu')->label('Status Kartu')
                     ->required(),
             ]);
@@ -62,10 +65,9 @@ class KartuMahasiswaResource extends Resource
                     ->falseColor('danger'),
                 Tables\Columns\TextColumn::make('created_at')->label('Tanggal Pendaftaran')
                     ->date('d M Y')->sortable()
-            ])->defaultSort('npm', 'asc')
-            ->filters([
-                //
             ])
+            ->defaultSort('npm', 'asc')
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make()->button(),
                 Tables\Actions\DeleteAction::make()->button()->requiresConfirmation()->label('Hapus'),
@@ -86,5 +88,10 @@ class KartuMahasiswaResource extends Resource
             'create' => Pages\CreateKartuMahasiswa::route('/create'),
             'edit' => Pages\EditKartuMahasiswa::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->where('deleted_at', null);
     }
 }

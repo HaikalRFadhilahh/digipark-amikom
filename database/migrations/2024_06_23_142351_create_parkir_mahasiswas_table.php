@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kartu_mahasiswas', function (Blueprint $table) {
+        Schema::create('parkir_mahasiswas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_mahasiswa');
-            $table->string('npm')->unique();
-            $table->string('nomer_kartu')->unique();
-            $table->boolean('status_kartu')->default(true);
-            $table->softDeletes();
+            $table->unsignedBigInteger('id_kartu')->nullable();
+            $table->foreign('id_kartu')->references('id')->on('kartu_mahasiswas')->onDelete('set null');
+            $table->string('nomer_kendaraan');
+            $table->enum('status', ['masuk', 'keluar']);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kartu_mahasiswas');
+        Schema::dropIfExists('parkir_mahasiswas');
     }
 };
