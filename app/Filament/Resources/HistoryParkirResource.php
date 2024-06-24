@@ -17,7 +17,7 @@ class HistoryParkirResource extends Resource
 {
     protected static ?string $model = HistoryParkir::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-document-chart-bar';
 
     protected static ?string $navigationLabel = 'History Parkir Mahasiswa';
 
