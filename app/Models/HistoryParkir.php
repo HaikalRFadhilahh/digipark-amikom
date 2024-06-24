@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class HistoryParkir extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
 }

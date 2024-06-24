@@ -39,11 +39,12 @@ class KartuMahasiswaResource extends Resource
                 Forms\Components\TextInput::make('npm')->label('NIM')
                     ->required()
                     ->maxLength(255)
-                    ->unique('kartu_mahasiswas', 'npm'),
+                    ->unique('kartu_mahasiswas', 'npm', ignoreRecord: true),
                 Forms\Components\TextInput::make('nomer_kartu')->label('Nomer Kartu')
                     ->required()
                     ->maxLength(255)
-                    ->unique('kartu_mahasiswas', 'nomer_kartu'),
+                    ->unique('kartu_mahasiswas', 'nomer_kartu', ignoreRecord: true)
+                    ->integer(true),
                 Forms\Components\Toggle::make('status_kartu')->label('Status Kartu')
                     ->required(),
             ]);
@@ -52,6 +53,7 @@ class KartuMahasiswaResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->recordUrl(null)
             ->columns([
                 Tables\Columns\TextColumn::make('nama_mahasiswa')->label('Nama Mahasiswa')
                     ->searchable()->sortable(),
