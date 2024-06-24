@@ -27,6 +27,6 @@ class ParkirMahasiswa extends Model
 
     public function kartuMahasiswa(): BelongsTo
     {
-        return $this->belongsTo(KartuMahasiswa::class);
+        return $this->belongsTo(KartuMahasiswa::class, 'id_kartu', 'id');
     }
 }

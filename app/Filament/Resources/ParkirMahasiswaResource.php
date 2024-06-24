@@ -41,12 +41,26 @@ class ParkirMahasiswaResource extends Resource
             ->recordUrl(null)
             ->query(fn (ParkirMahasiswa $query) => $query->masukTanpaKeluar())
             ->columns([
-                Tables\Columns\TextColumn::make('id_kartu')
-                    ->numeric()
+                // Tables\Columns\TextColumn::make('id_kartu')
+                //     ->numeric()
+                //     ->sortable(),
+                Tables\Columns\TextColumn::make('kartuMahasiswa.nama_mahasiswa')
+                    ->label('Nama Mahasiswa')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('kartuMahasiswa.npm')
+                    ->label('NPM Mahasiswa')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('kartuMahasiswa.nomer_kartu')
+                    ->label('Nomer Kartu')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nomer_kendaraan')
-                    ->searchable()->label('Nomer Kendaraan')->sortable(),
-                Tables\Columns\TextColumn::make('status')->label('Status')->sortable(),
+                    ->label('Nomer Kendaraan')
+                    ->searchable()
+                    ->sortable(),
+                // Tables\Columns\TextColumn::make('status')->label('Status')->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Jam Masuk Parkir')
                     ->datetime('H.i.s d M Y')

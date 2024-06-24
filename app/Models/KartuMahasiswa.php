@@ -18,4 +18,9 @@ class KartuMahasiswa extends Model
     {
         return $this->hasMany(ParkirMahasiswa::class);
     }
+
+    public function historyParkir(): HasMany
+    {
+        return $this->hasMany(HistoryParkir::class);
+    }
 }
