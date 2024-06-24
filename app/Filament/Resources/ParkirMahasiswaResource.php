@@ -21,6 +21,8 @@ class ParkirMahasiswaResource extends Resource
 
     protected static ?string $navigationLabel = 'Daftar Data Parkir Mahasiswa';
 
+    protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -66,6 +68,7 @@ class ParkirMahasiswaResource extends Resource
                     ->datetime('H.i.s d M Y')
                     ->sortable(),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
