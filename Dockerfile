@@ -70,7 +70,7 @@ RUN chown -R www-data:www-data /var/www/html
 
 # Environtment Variable
 ENV APP_NAME="DIGIPARK AMIKOM | AMICTA 2024"
-ENV APP_ENV=local
+ENV APP_ENV=production
 ENV APP_KEY=base64:uaFzhsi2iyK860/pGldh+tZnfbgoyFKda3izE2BSA7Q=
 ENV APP_DEBUG=false
 ENV APP_TIMEZONE=UTC
